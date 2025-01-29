@@ -17,7 +17,6 @@ const Login = () => {
         }
         try {
             const response = await Axios.post(`${base_url}/post/login`,formData,{headers:{"Content-Type": "application/json"}});
-            console.log(response.data);
             if(response.status == 200 && response.data.token) { 
                 sessionStorage.setItem("token",response.data.token);
                 Router.push('/dashboard');  

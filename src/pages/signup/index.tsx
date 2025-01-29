@@ -19,16 +19,16 @@ const Signup = () => {
             password: password
         }
         try {
-            const response = await Axios.post(`${base_url}/post/signup`,formData,{headers: {"Content-Type": "application/json"}}); 
-            if(response.status == 200) {
+            const response = await Axios.post(`${base_url}/post/signup`, formData, { headers: { "Content-Type": "application/json" } });
+            if (response.status == 200) {
                 router.push("/login");
             } else {
-                throw new Error 
-            }   
-        } catch(err) {  
-            console.log(err);   
+                throw new Error
+            }
+        } catch (err) {
+            console.log(err);
         }
-    }   
+    }
 
     return (
         <section className="bg-gray-50 dark:bg-gray-900">
