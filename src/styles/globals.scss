@@ -2,21 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-nav {
-    background: linear-gradient(330.74deg, #131313 3.27%, #464646 98.72%);
-    padding: 20px;
-    border-bottom: 1px solid #c4c4c4;  
-
-    .logo-content {
-        a {
-            display: flex;
-            column-gap: 10px;
-            justify-content: center;
-        }
-    }
-
-}
-
 #logo-sidebar {
     background: linear-gradient(330.74deg, #131313 3.27%, #464646 98.72%);
 }
@@ -34,25 +19,60 @@ nav {
         padding: 40px;
 
         .inner {
-            max-height: 500px;
-            overflow-y: auto;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 99;
 
+            .sub-inner {
+                max-height: 500px;
+                overflow-y: scroll;
+                background: #b7b7b7;
+            }
+
             .header {
-                padding: 20px;
+                padding: 15px 20px;
                 position: sticky;
-                top: -20px;
-                background: #374151;
+                top: 0;
+                background: #b7b7b7;
+                color: #000;
                 z-index: 9;
+                h3 {
+                    color: #000;
+
+                }
+                    button {
+                        border: 1px solid #000;
+                        border-radius: 50%;
+                        &:hover {
+                            background: transparent;   
+                        }
+                        svg {
+                            color: #000;
+                            opacity: 1;
+                        }
+                    }
+                
             }
 
             .body-content {
                 padding: 20px;
+                background: #b7b7b7;
+                color: #000; 
+
+                label {
+                    color: #000; 
+                }
+                input,textarea,select { 
+                    background: rgb(40 40 40); 
+                }
+
             }
+        }
+        .btn {
+            background: #000;
+            color: #FFF;
         }
     }
 }
@@ -130,7 +150,7 @@ aside {
     height: 100vh;
     position: fixed;
     width: 100%;
-    top: 74px;
+    top: 72px;
     left: 0;
     padding-top: 15px;
     ul {    
@@ -199,6 +219,14 @@ aside {
     background: linear-gradient(330.74deg, #131313 3.27%, #464646 98.72%);
     width: 100%;
     z-index: 9;
+    padding: 20px;
+    .logo-content {
+        a {
+            display: flex;
+            column-gap: 10px;
+            justify-content: center;
+        }
+    }
     .avatar-logo {
         background: #bababa;
         border-radius: 50%;
@@ -216,11 +244,13 @@ aside {
             row-gap: 10px;
         }
         .signout {
-            border-top: 0.5px solid #FFF;
+            border-top: 0.1px solid #FFF;
             li {    
                 margin: 5px auto;
-                padding-left: 10px;
                 cursor: pointer;
+                span {
+                    padding-left: 10px;
+                }
             }
         }
     }

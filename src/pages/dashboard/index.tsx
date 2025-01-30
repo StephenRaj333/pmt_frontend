@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 const Dashboard = () => {
     const base_url = process.env.NEXT_PUBLIC_PMT_BACKEND_BASE_URL
     const Router = useRouter()
-
+    const [displayTask,setDisplayTask] = useState<any>([]);
     const [fetchData, setFetchData] = useState<any>([]);
     const [userInfo, setUserInfo] = useState<any>(null);
     const [showDropDown, setShowDropDown] = useState(false);
@@ -30,8 +30,8 @@ const Dashboard = () => {
         { id: 4, val: "nodejs", checked: false }
     ]);
     const [teamLead, setTeamLead] = useState("");
-    const [overdue,setOverdue]= useState([])
-    const [displayTask,setDisplayTask] = useState([])
+    const [overdue,setOverdue]= useState([]);
+    
     useEffect(() => {
         async function CallUserInfo() {
             try {
@@ -67,19 +67,18 @@ const Dashboard = () => {
     useEffect(() => {
         async function MatchUser() {
             try {
-                if (fetchData) {
-                    const token: any = sessionStorage.getItem("token");
-                    const decoded: any = await jwtDecode(token);
-                    const response = await Axios.get(`${base_url}/get/matchUser`, { headers: { "findemail": decoded.email } });
-                    setFetchData(response.data);
-                    setDisplayTask(response.data);
-                }
+                const token: any = sessionStorage.getItem("token");
+                const decoded: any = await jwtDecode(token);
+                const response = await Axios.get(`${base_url}/get/matchUser`, { headers: { "findemail": decoded.email } });
+                setFetchData(response.data);   
+                setDisplayTask(response.data);
             } catch (err) {
                 console.log(err);
             }
         }
         MatchUser()
-    }, [modal, refreshPage])    /// when i select status and click on modal full data comes out  ! why?  
+    },[])    /// when i select status and click on modal full data comes out  ! why?     
+
 
     const handleClick = async () => {
         const token: any = sessionStorage.getItem("token");
@@ -234,28 +233,32 @@ const Dashboard = () => {
                 return null
             }
         });  
-        setOverdue(findOverDue)
-    },[fetchData]) 
-
-    const handleAllTask = (idx: any) => {
+        setOverdue(findOverDue);  
+    },[fetchData])   
+    
+    const handleAllTask = (idx: any) => {   
         setActiveLink(idx); 
+        setModal(false);
         setDisplayTask(fetchData)
     }
 
     const handlePendingTask = (idx: any) => {
         setActiveLink(idx);
-        const findPendingTask = fetchData.filter((item: any) => item.status == "progress");
-        setDisplayTask(findPendingTask)
+        setModal(false);
+        const pendingTasks = fetchData.filter((item:any) => item.status == "progress");
+        setDisplayTask(pendingTasks);
     }
 
     const handleCompletedTask = (idx: any) => { 
         setActiveLink(idx);   
-        const findCompletedTask = fetchData.filter((item: any) => item.status == "completed");
-        setDisplayTask(findCompletedTask)
-    }   
+        setModal(false);
+        const completedTasks = fetchData.filter((item:any) => item.status == "completed");
+        setDisplayTask(completedTasks);
+    }    
 
     const handleOverDueTask = (idx: any) => {
         setActiveLink(idx); 
+        setModal(false);
         const month = new Date().getMonth() + 1
         const year = new Date().getFullYear();
         const day = new Date().getDate();
@@ -272,7 +275,8 @@ const Dashboard = () => {
                 return null
             }
         });  
-        setDisplayTask(findOverDue);  
+        setOverdue(findOverDue);  
+        setDisplayTask(findOverDue); 
     }
 
     const menuItems = [
@@ -336,7 +340,7 @@ const Dashboard = () => {
 
             <div className="wrapper relative main-content-wrapper" onClick={() => setShowDropDown(false)}>
                 <div className="flex flex-wrap justify-left gap-[30px]">
-                    {displayTask.map((item: any, index: number) => {  
+                    {displayTask?.map((item: any, index: number) => { 
                         return (
                             <Card key={index} editClick={() => handleEdit(item)} deleteClick={() => handleDelete(item._id)} title={item.taskName} desc={item.taskDesc} date={item.deadline} priority={item.priority} />
                         )
@@ -348,10 +352,10 @@ const Dashboard = () => {
 
                 <div id="crud-modal" className={` ${modal ? "block" : "hidden"} modal-wrapper`}>
                     <div className="relative p-4 w-full max-w-md max-h-full inner">
-                        <div className="relative bg-white rounded-lg shadow-sm dark:bg-gray-700 sub-inner">
+                        <div className="relative bg-white rounded-lg shadow-sm sub-inner">
                             <div className="header flex items-center justify-between border-b rounded-t dark:border-gray-600 border-gray-200 pb-[10px]">
                                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                                    {passId !== "" && modal ? "Update Your Task" : "Create New Task"}
+                                    {passId !== "" && refreshPage ? "Update Your Task" : "Create New Task"}
                                 </h3>
                                 <button type="button" onClick={() => setModal(false)} className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
                                     <svg className="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -417,13 +421,13 @@ const Dashboard = () => {
                             </div>
                             {passId !== "" && modal ?
                                 <>
-                                    <button onClick={handleUpdate} className="ml-5 mb-5 text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <button onClick={handleUpdate} className="btn ml-5 mb-5 text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                         Update Now !
                                     </button>
                                 </>
                                 :
                                 <>
-                                    <button onClick={handleClick} className="ml-5 mb-5 text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <button onClick={handleClick} className="btn ml-5 mb-5 text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                         <svg className="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd"></path></svg>
                                         Add new product
                                     </button>

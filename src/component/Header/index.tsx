@@ -13,7 +13,7 @@ const Header = ({handleLogOut,name,email,showDropDown,handleDropDown}:any) => {
                             </svg>
                         </button>
                         <a className="flex ms-2 md:me-24">
-                            <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 me-3" alt="FlowBite Logo" />
+                            <img src="https://gild.cards/19f279ff2cb252e6c3d7.png" className="h-8 me-3" alt="FlowBite Logo" />   
                             <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Hi {name} !</span>
                         </a>     
                     </div>      
