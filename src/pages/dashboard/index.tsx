@@ -3,6 +3,7 @@ import Axios from "axios";
 import Card from "@/component/Card";
 import Aside from "@/component/Aside";
 import Header from '@/component/Header';
+import HalfDoughnutChart from '@/component/Chart';
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/router";
 
@@ -79,7 +80,7 @@ const Dashboard = () => {
             }
         }
         MatchUser()
-    }, [editModal,deleteModal,refreshPage])    /// when i select status and click on modal full data comes out  ! why?     
+    }, [editModal, deleteModal, refreshPage])    /// when i select status and click on modal full data comes out  ! why?     
 
 
     const handleClick = async () => {
@@ -340,6 +341,32 @@ const Dashboard = () => {
     ];
 
 
+    const dataOptions:any = {   
+        labels: ["Completed", "Pending"],
+        datasets: [
+          { 
+            data: [fetchData.filter((item:any) => item.status == "completed").length,fetchData.filter((item:any) => item.status == "progress").length],
+            backgroundColor: ["#8bce8a", "#eb4f31"],    
+            hoverBackgroundColor: ["#45a049", "#f57c00"],
+            borderWidth: 0,     
+            circumference: 180, 
+            rotation: 270, 
+          },
+        ],
+      };
+    
+      const options:any = {
+        responsive: true,   
+        maintainAspectRatio: false,
+        cutout: "60%", 
+        plugins: {
+          legend: {
+            display: true,
+            position: "top",
+          },
+        },
+      };
+
     return (
         <>
             <Header handleLogOut={handleLogOut} name={userInfo?.name} email={userInfo?.email} showDropDown={showDropDown} handleDropDown={() => setShowDropDown(!showDropDown)} />
@@ -347,6 +374,50 @@ const Dashboard = () => {
             <Aside menuItems={menuItems} activeState={activeLink} />
 
             <div className="wrapper relative main-content-wrapper" onClick={() => setShowDropDown(false)}>
+                <div className="stats">
+                    <div className="stats-content">
+                        <div className="block-1">
+                            <div className="img-wrapper">
+                                <div className="span">
+                                    <p>{userInfo?.name?.split("").join().at(0)} </p>
+                                </div>
+                            </div>
+                            <div className="info">
+                                <h3>Hello,</h3>
+                                <h5>Stephen</h5>
+                            </div>
+                        </div>
+                        <div className="block-2">
+                            <div className="content">
+                                <div className="left-sec">
+                                    <div className="blocks">
+                                        <h4>Total Tasks:</h4>
+                                        <p className="one">{fetchData.length}</p>
+                                    </div>
+                                    <div className="blocks">
+                                        <h4>In Progress:</h4>
+                                        <p className="two">{fetchData?.filter((item:any) => item?.status == "progress").length}</p> 
+                                    </div>
+                                </div>
+                                <div className="right-sec"> 
+                                    <div className="blocks">        
+                                        <h4>Completed:</h4>         
+                                        <p className="two">{fetchData?.filter((item:any) => item?.status == "completed").length}</p>    
+                                    </div>
+                                    <div className="blocks">
+                                        <h4>Open Tasks:</h4>
+                                        <p className="one">{overdue.length}</p> 
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                        <div className="block-3">
+                            <div className="bar-chart">
+                                <HalfDoughnutChart dataOption={dataOptions} options={options}  />  
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div className="flex flex-wrap justify-left gap-[30px]">
                     {displayTask?.map((item: any, index: number) => {
                         return (
@@ -468,11 +539,11 @@ const Dashboard = () => {
                                 </div>
                                 <div className="btn-wrapper">
                                     <button onClick={() => setDeleteModal(false)} className="btn ml-5 mb-5 text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        Cancel  
-                                    </button>   
+                                        Cancel
+                                    </button>
                                     <button onClick={handleDeleteTask} className="btn ml-5 mb-5 text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        Delete !    
-                                    </button>       
+                                        Delete !
+                                    </button>
                                 </div>
                             </div>
                         </div>
