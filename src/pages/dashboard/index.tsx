@@ -9,11 +9,12 @@ import { useRouter } from "next/router";
 const Dashboard = () => {
     const base_url = process.env.NEXT_PUBLIC_PMT_BACKEND_BASE_URL
     const Router = useRouter()
-    const [displayTask,setDisplayTask] = useState<any>([]);
+    const [displayTask, setDisplayTask] = useState<any>([]);
     const [fetchData, setFetchData] = useState<any>([]);
     const [userInfo, setUserInfo] = useState<any>(null);
     const [showDropDown, setShowDropDown] = useState(false);
-    const [modal, setModal] = useState(false);
+    const [editModal, setEditModal] = useState(false);
+    const [deleteModal, setDeleteModal] = useState(false);
     const [taskName, setTaskName] = useState("");
     const [taskDesc, setTaskDesc] = useState("");
     const [priority, setPriority] = useState("medium");
@@ -30,15 +31,16 @@ const Dashboard = () => {
         { id: 4, val: "nodejs", checked: false }
     ]);
     const [teamLead, setTeamLead] = useState("");
-    const [overdue,setOverdue]= useState([]);
-    
+    const [overdue, setOverdue] = useState([]);
+    const [uniqueId, setUniqueId] = useState("");
+
     useEffect(() => {
         async function CallUserInfo() {
             try {
                 const response = await Axios.get(`${base_url}/get/userInfo`, { headers: { "token": sessionStorage.getItem("token") } });
                 setUserInfo(response.data);
                 if (response.status == 200) {
-                    setModal(false);
+                    setEditModal(false);
                     setRefreshToken(false)
                 }
             } catch (err: any) {
@@ -70,14 +72,14 @@ const Dashboard = () => {
                 const token: any = sessionStorage.getItem("token");
                 const decoded: any = await jwtDecode(token);
                 const response = await Axios.get(`${base_url}/get/matchUser`, { headers: { "findemail": decoded.email } });
-                setFetchData(response.data);   
+                setFetchData(response.data);
                 setDisplayTask(response.data);
             } catch (err) {
                 console.log(err);
             }
         }
         MatchUser()
-    },[])    /// when i select status and click on modal full data comes out  ! why?     
+    }, [editModal,deleteModal,refreshPage])    /// when i select status and click on modal full data comes out  ! why?     
 
 
     const handleClick = async () => {
@@ -99,7 +101,7 @@ const Dashboard = () => {
             const response = await Axios.post(`${base_url}/post/taskDetails`, formData, { headers: { "Content-Type": "application/json" } });
             console.log(response.data);
             if (response.status == 200) {
-                setModal(false);
+                setEditModal(false);
                 setRefreshToken(false)
                 setTaskName("");
                 setTaskDesc("");
@@ -121,7 +123,7 @@ const Dashboard = () => {
     }
 
     const handleAddTask = () => {
-        setModal(true)
+        setEditModal(true);
         setRefreshToken(true);
         setPassId("");
         setTaskName("");
@@ -141,7 +143,7 @@ const Dashboard = () => {
 
     const handleEdit = (itemIDx: any) => {
         setPassId(itemIDx._id);
-        setModal(true);
+        setEditModal(true);
         setRefreshToken(true);
         setTaskName(itemIDx.taskName);
         setTaskDesc(itemIDx.taskDesc);
@@ -178,7 +180,7 @@ const Dashboard = () => {
             const response = await Axios.post(`${base_url}/update/task`, formData, { headers: { "Content-Type": "application/json" } });
             console.log(response.data);
             if (response.status == 200) {
-                setModal(false);
+                setEditModal(false);
                 setRefreshToken(false);
                 setTaskName("");
                 setTaskDesc("");
@@ -199,11 +201,17 @@ const Dashboard = () => {
         }
     }
 
-    const handleDelete = async (idx: any) => {
+    const handleDelete = (idx: any) => {
+        setUniqueId(idx);
+        setDeleteModal(true)
+    }
+
+    const handleDeleteTask = async () => {
         try {
-            const response = await Axios.post(`${base_url}/delete/task`, { userId: idx });
+            const response = await Axios.post(`${base_url}/delete/task`, { userId: uniqueId });
             if (response.status == 200) {
                 setRefreshToken(true);
+                setDeleteModal(false);
             }
         } catch (err) {
             console.log(err);
@@ -232,33 +240,33 @@ const Dashboard = () => {
             } else {
                 return null
             }
-        });  
-        setOverdue(findOverDue);  
-    },[fetchData])   
-    
-    const handleAllTask = (idx: any) => {   
-        setActiveLink(idx); 
-        setModal(false);
+        });
+        setOverdue(findOverDue);
+    }, [fetchData])
+
+    const handleAllTask = (idx: any) => {
+        setActiveLink(idx);
+        setEditModal(false);
         setDisplayTask(fetchData)
     }
 
     const handlePendingTask = (idx: any) => {
         setActiveLink(idx);
-        setModal(false);
-        const pendingTasks = fetchData.filter((item:any) => item.status == "progress");
+        setEditModal(false);
+        const pendingTasks = fetchData.filter((item: any) => item.status == "progress");
         setDisplayTask(pendingTasks);
     }
 
-    const handleCompletedTask = (idx: any) => { 
-        setActiveLink(idx);   
-        setModal(false);
-        const completedTasks = fetchData.filter((item:any) => item.status == "completed");
+    const handleCompletedTask = (idx: any) => {
+        setActiveLink(idx);
+        setEditModal(false);
+        const completedTasks = fetchData.filter((item: any) => item.status == "completed");
         setDisplayTask(completedTasks);
-    }    
+    }
 
     const handleOverDueTask = (idx: any) => {
-        setActiveLink(idx); 
-        setModal(false);
+        setActiveLink(idx);
+        setEditModal(false);
         const month = new Date().getMonth() + 1
         const year = new Date().getFullYear();
         const day = new Date().getDate();
@@ -274,9 +282,9 @@ const Dashboard = () => {
             } else {
                 return null
             }
-        });  
-        setOverdue(findOverDue);  
-        setDisplayTask(findOverDue); 
+        });
+        setOverdue(findOverDue);
+        setDisplayTask(findOverDue);
     }
 
     const menuItems = [
@@ -340,7 +348,7 @@ const Dashboard = () => {
 
             <div className="wrapper relative main-content-wrapper" onClick={() => setShowDropDown(false)}>
                 <div className="flex flex-wrap justify-left gap-[30px]">
-                    {displayTask?.map((item: any, index: number) => { 
+                    {displayTask?.map((item: any, index: number) => {
                         return (
                             <Card key={index} editClick={() => handleEdit(item)} deleteClick={() => handleDelete(item._id)} title={item.taskName} desc={item.taskDesc} date={item.deadline} priority={item.priority} />
                         )
@@ -348,16 +356,16 @@ const Dashboard = () => {
 
                     <button onClick={handleAddTask} className="add-button h-[16rem] w-[313px] py-2 rounded-md text-lg font-medium text-gray-500 border-dashed border-2 border-gray-400  hover:bg-lightgray-600 active:bg-violet-700 transition duration-200 ease-in-out">Add New Task</button>
                 </div>
-                {/* Modal */}
+                {/* Edit Modal */}
 
-                <div id="crud-modal" className={` ${modal ? "block" : "hidden"} modal-wrapper`}>
+                <div id="crud-modal" className={` ${editModal ? "block" : "hidden"} modal-wrapper`}>
                     <div className="relative p-4 w-full max-w-md max-h-full inner">
                         <div className="relative bg-white rounded-lg shadow-sm sub-inner">
                             <div className="header flex items-center justify-between border-b rounded-t dark:border-gray-600 border-gray-200 pb-[10px]">
                                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                                     {passId !== "" && refreshPage ? "Update Your Task" : "Create New Task"}
                                 </h3>
-                                <button type="button" onClick={() => setModal(false)} className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
+                                <button type="button" onClick={() => setEditModal(false)} className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
                                     <svg className="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                     </svg>
@@ -419,7 +427,7 @@ const Dashboard = () => {
                                     <input type="text" name="lead" value={teamLead} onChange={(e) => setTeamLead(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter your lead name" />
                                 </div>
                             </div>
-                            {passId !== "" && modal ?
+                            {passId !== "" && editModal ?
                                 <>
                                     <button onClick={handleUpdate} className="btn ml-5 mb-5 text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                         Update Now !
@@ -437,7 +445,41 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                {/* Modal */}
+                {/* Edit Modal */}
+
+                {/* Delete Modal */}
+                <div id="crud-modal" className={` ${deleteModal ? "block" : "hidden"} delete modal-wrapper`}>
+                    <div className="relative p-4 w-full max-w-md max-h-full inner">
+                        <div className="relative bg-white rounded-lg shadow-sm sub-inner">
+                            <div className="header flex items-center justify-between border-b rounded-t dark:border-gray-600 border-gray-200 pb-[10px]">
+                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                                    Delete this Task
+                                </h3>
+                                <button type="button" onClick={() => setDeleteModal(false)} className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
+                                    <svg className="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                    </svg>
+                                    <span className="sr-only">Close modal</span>
+                                </button>
+                            </div>
+                            <div className="wrapper">
+                                <div className="delete-content">
+                                    <h3>Are you Sure you want to Delete this Task ?</h3>
+                                </div>
+                                <div className="btn-wrapper">
+                                    <button onClick={() => setDeleteModal(false)} className="btn ml-5 mb-5 text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        Cancel  
+                                    </button>   
+                                    <button onClick={handleDeleteTask} className="btn ml-5 mb-5 text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        Delete !    
+                                    </button>       
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* Delete Modal */}
+
             </div>
         </>
     )

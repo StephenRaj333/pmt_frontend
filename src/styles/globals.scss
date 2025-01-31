@@ -274,3 +274,26 @@ aside {
 .focus\:ring-4:focus {  
     box-shadow: none !important;        
 }   
+
+.delete.modal-wrapper {
+    .sub-inner {
+        overflow-y: scroll;
+        background: #b7b7b7;
+    }   
+    .wrapper {
+        height: 100%;
+        .delete-content {
+            padding: 20px;
+            h3 {
+                font-size: 24px;
+                line-height: 32px;
+                color: #000;
+            }
+        }
+        .btn-wrapper {  
+            padding: 15px 15px 0 15px;
+            width: 100%;
+            text-align: right;
+        }
+    }
+}
