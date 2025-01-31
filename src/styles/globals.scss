@@ -237,6 +237,11 @@ aside {
         top:40px; 
         right:-6px;
         border-radius: 6px; 
+        background: #b7b7b7;
+        p {
+            color: #000;
+            font-weight: 500;
+        }
         .inner {
             padding: 10px;
             display: flex;
@@ -250,6 +255,11 @@ aside {
                 cursor: pointer;
                 span {
                     padding-left: 10px;
+                    color: #000;
+                    font-weight: 600;
+                }
+                span:hover {
+                    color: #FFF;
                 }
             }
         }
