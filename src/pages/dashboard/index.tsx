@@ -341,28 +341,35 @@ const Dashboard = () => {
     ];
 
 
-    const dataOptions:any = {   
+    const dataOptions: any = {
         labels: ["Completed", "Pending"],
         datasets: [
-          { 
-            data: [fetchData.filter((item:any) => item.status == "completed").length,fetchData.filter((item:any) => item.status == "progress").length],
-            backgroundColor: ["#8bce8a", "#eb4f31"],    
-            hoverBackgroundColor: ["#45a049", "#f57c00"],
-            borderWidth: 0,     
-            circumference: 180, 
-            rotation: 270, 
-          },
+            {
+                data: [fetchData.filter((item: any) => item.status == "completed").length, fetchData.filter((item: any) => item.status == "progress").length],
+                backgroundColor: ["#8bce8a", "#eb4f31"],
+                hoverBackgroundColor: ["#45a049", "#f57c00"],
+                borderWidth: 0,
+                circumference: 180,
+                rotation: 270,
+            },
         ],
-      };
-    
-      const options:any = {
-        responsive: true,   
+    };
+
+    const options = {
+        responsive: true,
         maintainAspectRatio: false,
-        cutout: "60%", 
+        cutout: "60%", // Adjust thickness
         plugins: {
           legend: {
             display: true,
             position: "top",
+            labels: {
+              color: "#FFF", // Change label color (e.g., red)
+              font: {
+                size: 14, // Adjust font size
+                weight: "bold", // Make it bold
+              },
+            },
           },
         },
       };
@@ -396,24 +403,24 @@ const Dashboard = () => {
                                     </div>
                                     <div className="blocks">
                                         <h4>In Progress:</h4>
-                                        <p className="two">{fetchData?.filter((item:any) => item?.status == "progress").length}</p> 
+                                        <p className="two">{fetchData?.filter((item: any) => item?.status == "progress").length}</p>
                                     </div>
                                 </div>
-                                <div className="right-sec"> 
-                                    <div className="blocks">        
-                                        <h4>Completed:</h4>         
-                                        <p className="two">{fetchData?.filter((item:any) => item?.status == "completed").length}</p>    
+                                <div className="right-sec">
+                                    <div className="blocks">
+                                        <h4>Completed:</h4>
+                                        <p className="two">{fetchData?.filter((item: any) => item?.status == "completed").length}</p>
                                     </div>
                                     <div className="blocks">
                                         <h4>Open Tasks:</h4>
-                                        <p className="one">{overdue.length}</p> 
-                                    </div>  
+                                        <p className="one">{overdue.length}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div className="block-3">
                             <div className="bar-chart">
-                                <HalfDoughnutChart dataOption={dataOptions} options={options}  />  
+                                <HalfDoughnutChart dataOption={dataOptions} options={options} />
                             </div>
                         </div>
                     </div>
