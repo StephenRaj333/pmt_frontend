@@ -448,6 +448,49 @@ aside {
             }
         }
     }
+    .status-tabs{
+        padding: 20px;
+        max-width: 94%;
+        .content{
+            text-align: right;
+            ul 
+            {
+                li {
+                    .active {
+                        background: #1c1d1f;
+                        border-bottom: 4px solid #f7e092;
+                        color: #ffffff;
+                        outline: none;
+                        cursor: pointer;
+                        margin-right: 10px;
+                        svg {
+                            width: 20px;
+                            height: 20px;
+                            margin-right: 10px;
+                            path {  
+                                fill: #FFF; 
+                            }   
+                        }
+                    }   
+                    .inactive {
+                        color: #ffffff;
+                        outline: none;
+                        cursor: pointer;
+                        margin-right: 10px;
+                        border-bottom: 4px solid transparent;
+                        svg {
+                            width: 20px;
+                            height: 20px;
+                            margin-right: 10px;
+                            path {  
+                                fill: #FFF; 
+                            }   
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 .focus\:ring-4:focus {

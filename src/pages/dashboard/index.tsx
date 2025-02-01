@@ -3,9 +3,13 @@ import Axios from "axios";
 import Card from "@/component/Card";
 import Aside from "@/component/Aside";
 import Header from '@/component/Header';
+import LowRisk from "@/component/SvgIcons/Low";
 import HalfDoughnutChart from '@/component/Chart';
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/router";
+import MediumRisk from "@/component/SvgIcons/Medium";
+import HighRisk from "@/component/SvgIcons/High";
+import AllTask from "@/component/SvgIcons/AllTask";
 
 const Dashboard = () => {
     const base_url = process.env.NEXT_PUBLIC_PMT_BACKEND_BASE_URL
@@ -24,6 +28,7 @@ const Dashboard = () => {
     const [passId, setPassId] = useState("");
     const [refreshPage, setRefreshToken] = useState(false);   /// try to do without this state 
     const [activeLink, setActiveLink] = useState<boolean>(false);
+    const [tabactiveLink, setTabActiveLink] = useState<boolean>(false);
     const [techStack, setTechStacks] = useState<any>([
         { id: 0, val: "html", checked: false },
         { id: 1, val: "css", checked: false },
@@ -236,12 +241,17 @@ const Dashboard = () => {
             const incomingMonth = incomingMonths[incomingMonths.length - 2];
             const incomingDays = item.deadline.split("-");
             const incomingDay = incomingDays[incomingDays.length - 1];
+            console.log("Day",incomingDay);
+            console.log("Month",incomingMonth);
+            console.log("Year",incomingYear);
+            
             if (incomingDay <= day && incomingMonth <= month && incomingYear <= year) {
                 return item
             } else {
                 return null
             }
         });
+        console.log(findOverDue);       
         setOverdue(findOverDue);
     }, [fetchData])
 
@@ -360,19 +370,73 @@ const Dashboard = () => {
         maintainAspectRatio: false,
         cutout: "60%", // Adjust thickness
         plugins: {
-          legend: {
-            display: true,
-            position: "top",
-            labels: {
-              color: "#FFF", // Change label color (e.g., red)
-              font: {
-                size: 14, // Adjust font size
-                weight: "bold", // Make it bold
-              },
+            legend: {
+                display: true,
+                position: "top",
+                labels: {
+                    color: "#FFF", // Change label color (e.g., red)
+                    font: {
+                        size: 14, // Adjust font size
+                        weight: "bold", // Make it bold
+                    },
+                },
             },
-          },
         },
-      };
+    };
+
+    const tabs: any = [
+        {
+            id: 0,
+            Title: "All",
+            Icon: <AllTask />,
+            active: tabactiveLink,
+            RiskItemClick: (idx:number) => AllRisk(idx),
+        },
+        {
+            id: 1,
+            Title: "Low",
+            Icon: <LowRisk />,
+            active: tabactiveLink,
+            RiskItemClick: (idx:number) => LowRisks(idx),
+        },
+        {
+            id: 2,
+            Title: "Medium",
+            Icon: <MediumRisk />,
+            active: tabactiveLink,
+            RiskItemClick: (idx:number) => MediumRisks(idx),
+        },
+        {
+            id: 3,
+            Title: "High",
+            Icon: <HighRisk />,
+            active: tabactiveLink,
+            RiskItemClick: (idx:number) => HighRisks(idx),
+        }   
+    ]       
+
+    const AllRisk = (idx:any) => {
+        setTabActiveLink(idx);
+        setDisplayTask(fetchData);  
+    }   
+
+    const LowRisks = (idx:any) => { 
+        setTabActiveLink(idx);  
+        const LowTaskRate = fetchData.filter((item:any) => item.priority == "low");  
+        setDisplayTask(LowTaskRate);   
+    }
+
+    const MediumRisks = (idx:any) => {
+        setTabActiveLink(idx);
+        const MediumTaskRate = fetchData.filter((item:any) => item.priority == "medium");  
+        setDisplayTask(MediumTaskRate);   
+    }   
+
+    const HighRisks = (idx:any) => { 
+        setTabActiveLink(idx);
+        const HighTaskRate = fetchData.filter((item:any) => item.priority == "high");  
+        setDisplayTask(HighTaskRate);   
+    }   
 
     return (
         <>
@@ -381,6 +445,23 @@ const Dashboard = () => {
             <Aside menuItems={menuItems} activeState={activeLink} />
 
             <div className="wrapper relative main-content-wrapper" onClick={() => setShowDropDown(false)}>
+                <div className="status-tabs">
+                    <div className="content">
+                        <div className="border-b border-gray-200 dark:border-gray-700">
+                            <ul className="flex flex-wrap justify-start -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+                                {tabs?.map((item: any, index: number) => {      
+                                    return (    
+                                        <li key={index} onClick={() => item.RiskItemClick(index)} className="me-2">  
+                                            <span className={`inline-flex ${item.active  == index ? "active": "inactive"} items-center justify-center p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg dark:text-blue-500 dark:border-blue-500 group`}>
+                                                {item.Icon} {item.Title}    
+                                            </span>     
+                                        </li>       
+                                    )
+                                })}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 <div className="stats">
                     <div className="stats-content">
                         <div className="block-1">
@@ -563,4 +644,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard;   
+export default Dashboard;       
