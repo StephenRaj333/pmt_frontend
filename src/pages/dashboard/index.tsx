@@ -85,7 +85,7 @@ const Dashboard = () => {
             }
         }
         MatchUser()
-    }, [editModal, deleteModal, refreshPage])    /// when i select status and click on modal full data comes out  ! why?     
+    }, [])    /// when i select status and click on modal full data comes out  ! why?     
 
 
     const handleClick = async () => {
@@ -230,29 +230,26 @@ const Dashboard = () => {
         Router.push("/login");
     }
 
-    useEffect(() => {
-        const month = new Date().getMonth() + 1
-        const year = new Date().getFullYear();
-        const day = new Date().getDate();
+    useEffect(() => {   
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1; 
+        const currentDay = currentDate.getDate();
+    
         const findOverDue = fetchData?.filter((item: any) => {
-            const incomingYears = item.deadline.split("-");
-            const incomingYear = incomingYears[incomingYears.length - 3];
-            const incomingMonths = item.deadline.split("-");
-            const incomingMonth = incomingMonths[incomingMonths.length - 2];
-            const incomingDays = item.deadline.split("-");
-            const incomingDay = incomingDays[incomingDays.length - 1];
-            console.log("Day",incomingDay);
-            console.log("Month",incomingMonth);
-            console.log("Year",incomingYear);
+            const [incomingYear, incomingMonth, incomingDay] = item.deadline.split("-").map(Number);
             
-            if (incomingDay <= day && incomingMonth <= month && incomingYear <= year) {
-                return item
-            } else {
-                return null
-            }
+            console.log("Incoming Day",incomingDay);   
+            console.log("Incoming Month",incomingMonth);
+            console.log("Incoming Year", incomingYear); 
+            
+            const itemDate = new Date(incomingYear, incomingMonth - 1, incomingDay); 
+            const today = new Date(currentYear, currentMonth - 1, currentDay); 
+            return itemDate <= today;
         });
-        console.log(findOverDue);       
+    
         setOverdue(findOverDue);
+        setDisplayTask(findOverDue);
     }, [fetchData])
 
     const handleAllTask = (idx: any) => {
@@ -278,22 +275,19 @@ const Dashboard = () => {
     const handleOverDueTask = (idx: any) => {
         setActiveLink(idx);
         setEditModal(false);
-        const month = new Date().getMonth() + 1
-        const year = new Date().getFullYear();
-        const day = new Date().getDate();
+        
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1; 
+        const currentDay = currentDate.getDate();
+    
         const findOverDue = fetchData?.filter((item: any) => {
-            const incomingYears = item.deadline.split("-");
-            const incomingYear = incomingYears[incomingYears.length - 3];
-            const incomingMonths = item.deadline.split("-");
-            const incomingMonth = incomingMonths[incomingMonths.length - 2];
-            const incomingDays = item.deadline.split("-");
-            const incomingDay = incomingDays[incomingDays.length - 1];
-            if (incomingDay <= day && incomingMonth <= month && incomingYear <= year) {
-                return item
-            } else {
-                return null
-            }
+            const [incomingYear, incomingMonth, incomingDay] = item.deadline.split("-").map(Number);
+            const itemDate = new Date(incomingYear, incomingMonth - 1, incomingDay); 
+            const today = new Date(currentYear, currentMonth - 1, currentDay); 
+            return itemDate <= today;
         });
+    
         setOverdue(findOverDue);
         setDisplayTask(findOverDue);
     }
