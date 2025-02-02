@@ -249,7 +249,6 @@ const Dashboard = () => {
         });
     
         setOverdue(findOverDue);
-        setDisplayTask(findOverDue);
     }, [fetchData])
 
     const handleAllTask = (idx: any) => {
