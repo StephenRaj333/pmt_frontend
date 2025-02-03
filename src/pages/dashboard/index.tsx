@@ -40,6 +40,20 @@ const Dashboard = () => {
     const [overdue, setOverdue] = useState([]);
     const [uniqueId, setUniqueId] = useState("");
 
+    const [allTaskState, setAllTaskState] = useState(false);
+    const [allTask, setAllTask] = useState([]);
+
+    const [completedState, setCompletedState] = useState(false);
+    const [completedTask, setCompletedTask] = useState([]);
+
+    const [pendingState, setPendingState] = useState(false);
+    const [pendingTask, setPendingTask] = useState([]);
+
+    const [overdueState, setOverdueState] = useState(false);
+    const [overdueTask, setOverdueTask] = useState([]);
+
+    const [riskFactor,setRiskFactor] = useState([]);
+
     useEffect(() => {
         async function CallUserInfo() {
             try {
@@ -78,14 +92,40 @@ const Dashboard = () => {
                 const token: any = sessionStorage.getItem("token");
                 const decoded: any = await jwtDecode(token);
                 const response = await Axios.get(`${base_url}/get/matchUser`, { headers: { "findemail": decoded.email } });
-                setFetchData(response.data);
-                setDisplayTask(response.data);
+                return setFetchData(response.data); 
             } catch (err) {
                 console.log(err);
             }
         }
         MatchUser()
-    }, [])    /// when i select status and click on modal full data comes out  ! why?     
+    }, [refreshPage])    /// when i select status and click on modal full data comes out  ! why?     
+
+
+    useEffect(() => {
+        async function FetchDynamic() {
+            setDisplayTask(fetchData)    
+            setRiskFactor(fetchData);
+            if (completedState) {
+                setDisplayTask(completedTask);
+                setRiskFactor(completedTask);
+            }
+            if (pendingState) {
+                setDisplayTask(pendingTask);
+                setRiskFactor(pendingTask);
+            }
+            if (allTaskState) {
+                setDisplayTask(allTask);
+                setRiskFactor(allTask);
+            }
+            if (overdueState) {
+                setDisplayTask(overdueTask);
+                setRiskFactor(overdueTask); 
+            }   
+        }   
+
+        FetchDynamic(); 
+    }, [fetchData, completedState, pendingState, allTaskState, overdueState]);
+    
 
 
     const handleClick = async () => {
@@ -150,7 +190,7 @@ const Dashboard = () => {
     const handleEdit = (itemIDx: any) => {
         setPassId(itemIDx._id);
         setEditModal(true);
-        setRefreshToken(true);
+        setRefreshToken(false);
         setTaskName(itemIDx.taskName);
         setTaskDesc(itemIDx.taskDesc);
         setPriority(itemIDx.priority);
@@ -187,7 +227,7 @@ const Dashboard = () => {
             console.log(response.data);
             if (response.status == 200) {
                 setEditModal(false);
-                setRefreshToken(false);
+                setRefreshToken(true); // Toggle the refreshPage state 
                 setTaskName("");
                 setTaskDesc("");
                 setPriority("medium");
@@ -230,65 +270,81 @@ const Dashboard = () => {
         Router.push("/login");
     }
 
-    useEffect(() => {   
+    useEffect(() => {
         const currentDate = new Date();
         const currentYear = currentDate.getFullYear();
-        const currentMonth = currentDate.getMonth() + 1; 
+        const currentMonth = currentDate.getMonth() + 1;
         const currentDay = currentDate.getDate();
-    
+
         const findOverDue = fetchData?.filter((item: any) => {
             const [incomingYear, incomingMonth, incomingDay] = item.deadline.split("-").map(Number);
-            
-            console.log("Incoming Day",incomingDay);   
-            console.log("Incoming Month",incomingMonth);
-            console.log("Incoming Year", incomingYear); 
-            
-            const itemDate = new Date(incomingYear, incomingMonth - 1, incomingDay); 
-            const today = new Date(currentYear, currentMonth - 1, currentDay); 
+
+            console.log("Incoming Day", incomingDay);
+            console.log("Incoming Month", incomingMonth);
+            console.log("Incoming Year", incomingYear);
+
+            const itemDate = new Date(incomingYear, incomingMonth - 1, incomingDay);
+            const today = new Date(currentYear, currentMonth - 1, currentDay);
             return itemDate <= today;
         });
-    
+
         setOverdue(findOverDue);
     }, [fetchData])
 
     const handleAllTask = (idx: any) => {
         setActiveLink(idx);
         setEditModal(false);
-        setDisplayTask(fetchData)
+        setAllTask(fetchData);
+        setAllTaskState(true);
+        setPendingState(false);
+        setCompletedState(false);
+        setOverdueState(false);
     }
 
     const handlePendingTask = (idx: any) => {
         setActiveLink(idx);
         setEditModal(false);
         const pendingTasks = fetchData.filter((item: any) => item.status == "progress");
-        setDisplayTask(pendingTasks);
+        setPendingTask(pendingTasks);
+        setPendingState(true);
+        setCompletedState(false);
+        setOverdueState(false);
+        setAllTaskState(false);
     }
 
     const handleCompletedTask = (idx: any) => {
         setActiveLink(idx);
         setEditModal(false);
         const completedTasks = fetchData.filter((item: any) => item.status == "completed");
-        setDisplayTask(completedTasks);
+        setCompletedTask(completedTasks);
+        setCompletedState(true);
+        setAllTaskState(false)
+        setPendingState(false);
+        setOverdueState(false);
     }
 
     const handleOverDueTask = (idx: any) => {
         setActiveLink(idx);
         setEditModal(false);
-        
+
         const currentDate = new Date();
         const currentYear = currentDate.getFullYear();
-        const currentMonth = currentDate.getMonth() + 1; 
+        const currentMonth = currentDate.getMonth() + 1;
         const currentDay = currentDate.getDate();
-    
+
         const findOverDue = fetchData?.filter((item: any) => {
             const [incomingYear, incomingMonth, incomingDay] = item.deadline.split("-").map(Number);
-            const itemDate = new Date(incomingYear, incomingMonth - 1, incomingDay); 
-            const today = new Date(currentYear, currentMonth - 1, currentDay); 
+            const itemDate = new Date(incomingYear, incomingMonth - 1, incomingDay);
+            const today = new Date(currentYear, currentMonth - 1, currentDay);
             return itemDate <= today;
         });
-    
+
         setOverdue(findOverDue);
-        setDisplayTask(findOverDue);
+        setOverdueTask(findOverDue);
+        setOverdueState(true);
+        setPendingState(false);
+        setCompletedState(false);
+        setAllTaskState(false);
     }
 
     const menuItems = [
@@ -383,53 +439,67 @@ const Dashboard = () => {
             Title: "All",
             Icon: <AllTask />,
             active: tabactiveLink,
-            RiskItemClick: (idx:number) => AllRisk(idx),
+            RiskItemClick: (idx: number) => AllRisk(idx),
         },
         {
             id: 1,
             Title: "Low",
             Icon: <LowRisk />,
             active: tabactiveLink,
-            RiskItemClick: (idx:number) => LowRisks(idx),
+            RiskItemClick: (idx: number) => LowRisks(idx),
         },
         {
             id: 2,
             Title: "Medium",
             Icon: <MediumRisk />,
             active: tabactiveLink,
-            RiskItemClick: (idx:number) => MediumRisks(idx),
+            RiskItemClick: (idx: number) => MediumRisks(idx),
         },
         {
             id: 3,
             Title: "High",
             Icon: <HighRisk />,
             active: tabactiveLink,
-            RiskItemClick: (idx:number) => HighRisks(idx),
-        }   
-    ]       
+            RiskItemClick: (idx: number) => HighRisks(idx),
+        }
+    ]
 
-    const AllRisk = (idx:any) => {
+    const AllRisk = (idx: any) => {
         setTabActiveLink(idx);
-        setDisplayTask(fetchData);  
-    }   
-
-    const LowRisks = (idx:any) => { 
-        setTabActiveLink(idx);  
-        const LowTaskRate = fetchData.filter((item:any) => item.priority == "low");  
-        setDisplayTask(LowTaskRate);   
+        const AllTaskRate = riskFactor.map((item: any) => {
+            if(item.priority) return item; 
+            else return null;
+        }).filter((item: any) => item !== null);
+        setDisplayTask(AllTaskRate);    
     }
 
-    const MediumRisks = (idx:any) => {
+    const LowRisks = (idx: any) => {
         setTabActiveLink(idx);
-        const MediumTaskRate = fetchData.filter((item:any) => item.priority == "medium");  
-        setDisplayTask(MediumTaskRate);   
-    }   
+        const LowTaskRate = riskFactor.map((item: any) => {
+            if(item.priority === "low") return item;
+            else return null;
+        }).filter((item: any) => item !== null);
+        setDisplayTask(LowTaskRate);
+        
+    }
 
-    const HighRisks = (idx:any) => { 
+    const MediumRisks = (idx: any) => {
         setTabActiveLink(idx);
-        const HighTaskRate = fetchData.filter((item:any) => item.priority == "high");  
-        setDisplayTask(HighTaskRate);   
-    }   
+        const MediumTaskRate = riskFactor.map((item: any) => {
+            if(item.priority === "medium") return item;
+            else return null;
+        }).filter((item: any) => item !== null);
+        setDisplayTask(MediumTaskRate);
+    }
+
+    const HighRisks = (idx: any) => {
+        setTabActiveLink(idx);
+        const HighTaskRate = riskFactor.map((item: any) => {
+            if(item.priority === "high") return item;
+            else return null;
+        }).filter((item: any) => item !== null);
+        setDisplayTask(HighTaskRate);
+    }
 
     return (
         <>
@@ -442,13 +512,13 @@ const Dashboard = () => {
                     <div className="content">
                         <div className="border-b border-gray-200 dark:border-gray-700">
                             <ul className="flex flex-wrap justify-start -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-                                {tabs?.map((item: any, index: number) => {      
-                                    return (    
-                                        <li key={index} onClick={() => item.RiskItemClick(index)} className="me-2">  
-                                            <span className={`inline-flex ${item.active  == index ? "active": "inactive"} items-center justify-center p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg dark:text-blue-500 dark:border-blue-500 group`}>
-                                                {item.Icon} {item.Title}    
-                                            </span>     
-                                        </li>       
+                                {tabs?.map((item: any, index: number) => {
+                                    return (
+                                        <li key={index} onClick={() => item.RiskItemClick(index)} className="me-2">
+                                            <span className={`inline-flex ${item.active == index ? "active" : "inactive"} items-center justify-center p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg dark:text-blue-500 dark:border-blue-500 group`}>
+                                                {item.Icon} {item.Title}
+                                            </span>
+                                        </li>
                                     )
                                 })}
                             </ul>
