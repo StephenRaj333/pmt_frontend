@@ -148,7 +148,7 @@ const Dashboard = () => {
             console.log(response.data);
             if (response.status == 200) {
                 setEditModal(false);
-                setRefreshToken(false)
+                setRefreshToken(true); 
                 setTaskName("");
                 setTaskDesc("");
                 setPriority("medium");
@@ -170,7 +170,7 @@ const Dashboard = () => {
 
     const handleAddTask = () => {
         setEditModal(true);
-        setRefreshToken(true);
+        setRefreshToken(false);
         setPassId("");
         setTaskName("");
         setTaskDesc("");
@@ -250,6 +250,7 @@ const Dashboard = () => {
     const handleDelete = (idx: any) => {
         setUniqueId(idx);
         setDeleteModal(true)
+        setRefreshToken(false);
     }
 
     const handleDeleteTask = async () => {
