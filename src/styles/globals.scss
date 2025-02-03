@@ -16,7 +16,7 @@
 
     .modal-wrapper {
         width: 100%;
-        padding: 40px;
+        padding: 2.9283vw /* 40px -> 2.9283vw */;
 
         .inner {
             position: fixed;
@@ -26,13 +26,13 @@
             z-index: 99;
 
             .sub-inner {
-                max-height: 500px;
+                max-height: 36.6032vw /* 500px -> 36.6032vw */;
                 overflow-y: scroll;
                 background: #b7b7b7;
             }
 
             .header {
-                padding: 15px 20px;
+                padding: 1.0981vw /* 15px -> 1.0981vw */ 1.4641vw /* 20px -> 1.4641vw */;
                 position: sticky;
                 top: 0;
                 background: #b7b7b7;
@@ -61,7 +61,7 @@
             }
 
             .body-content {
-                padding: 20px;
+                padding: 1.4641vw /* 20px -> 1.4641vw */;
                 background: #b7b7b7;
                 color: #000;
 
@@ -91,27 +91,27 @@
     color: #FFF;
 
     .inner {
-        min-width: 330px;
-        max-width: 330px;
-        height: 256px;
+        min-width: 21.9619vw /* 300px -> 21.9619vw */;
+        max-width: 21.9619vw /* 300px -> 21.9619vw */;
+        height: 18.7408vw /* 256px -> 18.7408vw */;
         background: linear-gradient(330.74deg, #131313 3.27%, #464646 98.72%);
-        padding: 14px 10px;
-        border-radius: 8px;
+        padding: 1.0249vw /* 14px -> 1.0249vw */ .7321vw /* 10px -> .7321vw */;
+        border-radius: .5857vw /* 8px -> .5857vw */;
 
         h3 {
-            font-size: 24px;
-            line-height: 32px;
+            font-size: 1.757vw /* 24px -> 1.757vw */;
+            line-height: 2.3426vw /* 32px -> 2.3426vw */;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: .8785vw /* 12px -> .8785vw */;
         }
 
         p {
-            font-size: 16px;
-            line-height: 24px;
+            font-size: 1.1713vw /* 16px -> 1.1713vw */;
+            line-height: 1.757vw /* 24px -> 1.757vw */;
         }
 
         .content {
-            padding: 10px;
+            padding: .7321vw /* 10px -> .7321vw */;
             position: absolute;
             left: 0;
             right: 0;
@@ -124,14 +124,14 @@
             .left-sec {
                 p {
                     color: rgb(156 163 175);
-                    font-size: 14px;
+                    font-size: 1.0249vw /* 14px -> 1.0249vw */;
                     font-weight: 600;
                 }
             }
 
             .middle-sec {
                 p {
-                    font-size: 14px;
+                    font-size: 1.0249vw /* 14px -> 1.0249vw */;
                     font-weight: 600;
                 }
             }
@@ -141,8 +141,8 @@
 
                 .img-wrapper {
                     svg {
-                        width: 24px;
-                        height: 24px;
+                        width: 1.757vw /* 24px -> 1.757vw */;
+                        height: 1.757vw /* 24px -> 1.757vw */;
                         cursor: pointer;
                     }
                 }
@@ -154,11 +154,11 @@
 // aside 
 
 aside {
-    max-width: 300px;
+    max-width: 21.9619vw /* 300px -> 21.9619vw */;
     height: 100vh;
     position: fixed;
     width: 100%;
-    top: 72px;
+    top: 5.2709vw /* 72px -> 5.2709vw */;
     left: 0;
     padding-top: 15px;
 
@@ -168,23 +168,23 @@ aside {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                margin: auto 20px;
-                padding: 10px 20px 10px 10px;
-                border-radius: 6px;
-                font-size: 16px;
-                line-height: 24px;
+                margin: auto 1.4641vw /* 20px -> 1.4641vw */;
+                padding: .7321vw /* 10px -> .7321vw */ 1.4641vw /* 20px -> 1.4641vw */ .7321vw /* 10px -> .7321vw */ .7321vw /* 10px -> .7321vw */;
+                border-radius: .4392vw /* 6px -> .4392vw */;
+                font-size: 1.1713vw /* 16px -> 1.1713vw */;
+                line-height: 1.757vw /* 24px -> 1.757vw */;
                 font-weight: 500;
                 cursor: pointer;
 
                 .f-block {
                     display: flex;
                     align-items: center;
-                    column-gap: 10px;
+                    column-gap: .7321vw /* 10px -> .7321vw */;
                 }
 
                 .l-block {
-                    width: 30px;
-                    height: 30px;
+                    width: 2.1962vw /* 30px -> 2.1962vw */;
+                    height: 2.1962vw /* 30px -> 2.1962vw */;
                     background: #FFF;
                     color: #000;
                     border-radius: 50%;
@@ -236,12 +236,12 @@ aside {
     background: linear-gradient(330.74deg, #131313 3.27%, #464646 98.72%);
     width: 100%;
     z-index: 9;
-    padding: 20px;
+    padding: 1.5641vw /* 20px -> 1.5641vw */;
 
     .logo-content {
         a {
             display: flex;
-            column-gap: 10px;
+            column-gap: .7321vw /* 10px -> .7321vw */;
             justify-content: center;
         }
     }
@@ -254,9 +254,9 @@ aside {
 
     .dropdown_content {
         position: absolute;
-        top: 40px;
-        right: -6px;
-        border-radius: 6px;
+        top: 2.9283vw /* 40px -> 2.9283vw */;
+        right: -0.4392vw /* -6px -> -0.4392vw */;
+        border-radius: .4392vw /* 6px -> .4392vw */;
         background: #b7b7b7;
 
         p {
@@ -265,21 +265,21 @@ aside {
         }
 
         .inner {
-            padding: 10px;
+            padding: .7321vw /* 10px -> .7321vw */;
             display: flex;
             flex-direction: column;
-            row-gap: 10px;
+            row-gap: .7321vw /* 10px -> .7321vw */;
         }
 
         .signout {
             border-top: 0.1px solid #FFF;
 
             li {
-                margin: 5px auto;
+                margin: .366vw /* 5px -> .366vw */ auto;
                 cursor: pointer;
 
                 span {
-                    padding-left: 10px;
+                    padding-left: .7321vw /* 10px -> .7321vw */;
                     color: #000;
                     font-weight: 600;
                 }
@@ -293,39 +293,44 @@ aside {
 }
 
 .main-content-wrapper {
-    margin-top: 90px;
-    margin-left: 320px;
+    margin-top: 6.5886vw /* 90px -> 6.5886vw */;
+    margin-left: 23.4261vw /* 320px -> 23.4261vw */;
+    .add-button {
+        min-width: 21.9619vw /* 300px -> 21.9619vw */;
+        max-width: 21.9619vw /* 300px -> 21.9619vw */;
+        height: 18.7408vw /* 256px -> 18.7408vw */;
+    }   
 
     .stats {
         .stats-content {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            column-gap: 40px;
+            column-gap: 2.9283vw /* 40px -> 2.9283vw */;
             background: #bababa45;
             width: 94%;
-            padding: 20px;
-            border-radius: 10px;   
-            margin-bottom: 20px;   
+            padding: 1.4641vw /* 20px -> 1.4641vw */;
+            border-radius: .7321vw /* 10px -> .7321vw */;   
+            margin-bottom: 1.4641vw /* 20px -> 1.4641vw */;   
             
             .block-1 {
                 display: flex;
                 align-items: center;
-                column-gap: 20px;
+                column-gap: 1.4641vw /* 20px -> 1.4641vw */;
 
                 .img-wrapper {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 64px;
-                    height: 64px;
+                    width: 4.6852vw /* 64px -> 4.6852vw */;
+                    height: 4.6852vw /* 64px -> 4.6852vw */;
                     background: #51b0dd;
                     box-shadow: 0px 0px 21.113px 0px rgba(0, 0, 0, 0.09);
                     border-radius: 50%;
 
                     .span {
                         p {
-                            font-size: 24px;
+                            font-size: 1.757vw /* 24px -> 1.757vw */;
                             color: #FFF;
                             font-weight: 600;
                         }
@@ -334,14 +339,14 @@ aside {
 
                 .info {
                     h3 {
-                        font-size: 24px;
+                        font-size: 1.757vw /* 24px -> 1.757vw */;
                         line-height: 30px;
                         color: #FFF;
                     }
 
                     h5 {
-                        font-size: 28px;
-                        line-height: 32px;
+                        font-size: 2.0498vw /* 28px -> 2.0498vw */;
+                        line-height: 2.3426vw /* 32px -> 2.3426vw */;
                         color: #FFF;
                         font-weight: 600;
                     }
@@ -352,28 +357,28 @@ aside {
                 .content {
                     display: flex;
                     flex-direction: column; 
-                    row-gap: 4px;
+                    row-gap: .2928vw /* 4px -> .2928vw */;
                     .left-sec {
                         display: flex;
                         align-items: flex-start;
-                        column-gap: 30px;
+                        column-gap: 2.1962vw /* 30px -> 2.1962vw */;
 
                         .blocks {
                             display: flex;
-                            row-gap: 4px;
+                            row-gap: .2928vw /* 4px -> .2928vw */;
                             flex-direction: column;
                             position: relative;
 
                             h4 {
-                                font-size: 18px;
-                                line-height: 24px;
+                                font-size: 1.3177vw /* 18px -> 1.3177vw */;
+                                line-height: 1.757vw /* 24px -> 1.757vw */;
                                 color: #9ca3af;
                             }
 
                             p {
-                                font-size: 32px;
-                                line-height: 40px;
-                                padding-left: 24px;
+                                font-size: 2.3426vw /* 32px -> 2.3426vw */;
+                                line-height: 2.9283vw /* 40px -> 2.9283vw */;
+                                padding-left: 1.757vw /* 24px -> 1.757vw */;
                                 color: #FFF;
                             }
 
@@ -381,20 +386,20 @@ aside {
                                 content: "";
                                 position: absolute;
                                 left: 0;
-                                height: 30px;
+                                height: 2.1962vw /* 30px -> 2.1962vw */;
                                 background: #a855f7;
-                                width: 4px;
-                                bottom: 5px;
+                                width: .2928vw /* 4px -> .2928vw */;
+                                bottom: .366vw /* 5px -> .366vw */;
                             }
 
                             .two::before {
                                 content: "";
                                 position: absolute;
                                 left: 0;
-                                height: 30px;
+                                height: 2.1962vw /* 30px -> 2.1962vw */;
                                 background: #3bafae;
-                                width: 4px;
-                                bottom: 5px;
+                                width: .2928vw /* 4px -> .2928vw */;
+                                bottom: .366vw /* 5px -> .366vw */;
                             }
                         }
                     }
@@ -402,24 +407,24 @@ aside {
                     .right-sec {
                         display: flex;
                         align-items: flex-start;
-                        column-gap: 30px;
+                        column-gap: 2.1962vw /* 30px -> 2.1962vw */;
 
                         .blocks {
                             display: flex;
-                            row-gap: 4px;
+                            row-gap: .2928vw /* 4px -> .2928vw */;
                             flex-direction: column;
                             position: relative;
 
                             h4 {
-                                font-size: 18px;
-                                line-height: 24px;
+                                font-size: 1.3177vw /* 18px -> 1.3177vw */;
+                                line-height: 1.757vw /* 24px -> 1.757vw */;
                                 color: #9ca3af;
                             }
 
                             p {
-                                font-size: 32px;
-                                line-height: 40px;
-                                padding-left: 24px;
+                                font-size: 2.3426vw /* 32px -> 2.3426vw */;
+                                line-height: 2.9283vw /* 40px -> 2.9283vw */;
+                                padding-left: 1.757vw /* 24px -> 1.757vw */;
                                 color: #FFF;
                             }
 
@@ -427,20 +432,20 @@ aside {
                                 content: "";
                                 position: absolute;
                                 left: 0;
-                                height: 30px;
+                                height: 2.1962vw /* 30px -> 2.1962vw */;
                                 background: rgb(251 146 60);
-                                width: 4px;
-                                bottom: 5px;
+                                width: .2928vw /* 4px -> .2928vw */;
+                                bottom: .366vw /* 5px -> .366vw */;
                             }
 
                             .two::before {
                                 content: "";
                                 position: absolute;
                                 left: 0;
-                                height: 30px;
+                                height: 2.1962vw /* 30px -> 2.1962vw */;
                                 background: rgb(74 222 128);  
-                                width: 4px;
-                                bottom: 5px;
+                                width: .2928vw /* 4px -> .2928vw */;
+                                bottom: .366vw /* 5px -> .366vw */;
                             }   
                         }
                     }
@@ -449,7 +454,7 @@ aside {
         }
     }
     .status-tabs{
-        padding: 20px;
+        padding: 1.4641vw /* 20px -> 1.4641vw */;
         max-width: 94%;
         .content{
             text-align: right;
@@ -462,11 +467,11 @@ aside {
                         color: #ffffff;
                         outline: none;
                         cursor: pointer;
-                        margin-right: 10px;
+                        margin-right: .7321vw /* 10px -> .7321vw */;
                         svg {
-                            width: 20px;
-                            height: 20px;
-                            margin-right: 10px;
+                            width: 1.4641vw /* 20px -> 1.4641vw */;
+                            height: 1.4641vw /* 20px -> 1.4641vw */;
+                            margin-right: .7321vw /* 10px -> .7321vw */;
                             path {  
                                 fill: #FFF; 
                             }   
@@ -476,12 +481,12 @@ aside {
                         color: #ffffff;
                         outline: none;
                         cursor: pointer;
-                        margin-right: 10px;
+                        margin-right: .7321vw /* 10px -> .7321vw */;
                         border-bottom: 4px solid transparent;
                         svg {
-                            width: 20px;
-                            height: 20px;
-                            margin-right: 10px;
+                            width: 1.4641vw /* 20px -> 1.4641vw */;
+                            height: 1.4641vw /* 20px -> 1.4641vw */;
+                            margin-right: .7321vw /* 10px -> .7321vw */;
                             path {  
                                 fill: #FFF; 
                             }   
@@ -507,19 +512,23 @@ aside {
         height: 100%;
 
         .delete-content {
-            padding: 20px;
+            padding: 1.4641vw /* 20px -> 1.4641vw */;
 
             h3 {
-                font-size: 24px;
-                line-height: 32px;
+                font-size: 1.757vw /* 24px -> 1.757vw */;
+                line-height: 2.3426vw /* 32px -> 2.3426vw */;
                 color: #000;
             }
         }
 
         .btn-wrapper {
-            padding: 15px 15px 0 15px;
+            padding: 1.0981vw /* 15px -> 1.0981vw */ 1.0981vw /* 15px -> 1.0981vw */ 0 1.0981vw /* 15px -> 1.0981vw */;
             width: 100%;
             text-align: right;
         }
     }
 }
+
+
+// responsive 
+

@@ -577,7 +577,7 @@ const Dashboard = () => {
                         )
                     })}
 
-                    <button onClick={handleAddTask} className="add-button h-[16rem] w-[313px] py-2 rounded-md text-lg font-medium text-gray-500 border-dashed border-2 border-gray-400  hover:bg-lightgray-600 active:bg-violet-700 transition duration-200 ease-in-out">Add New Task</button>
+                    <button onClick={handleAddTask} className="add-button rounded-md text-lg font-medium text-gray-500 border-dashed border-2 border-gray-400  hover:bg-lightgray-600 active:bg-violet-700 transition duration-200 ease-in-out">Add New Task</button>
                 </div>
                 {/* Edit Modal */}
 
