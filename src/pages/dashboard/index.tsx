@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import MediumRisk from "@/component/SvgIcons/Medium";
 import HighRisk from "@/component/SvgIcons/High";
 import AllTask from "@/component/SvgIcons/AllTask";
+import DownloadCSV from '@/component/Csv_Report'; 
 
 const Dashboard = () => {
     const base_url = process.env.NEXT_PUBLIC_PMT_BACKEND_BASE_URL
@@ -52,7 +53,7 @@ const Dashboard = () => {
     const [overdueState, setOverdueState] = useState(false);
     const [overdueTask, setOverdueTask] = useState([]);
 
-    const [riskFactor,setRiskFactor] = useState([]);
+    const [riskFactor, setRiskFactor] = useState([]);
 
     useEffect(() => {
         async function CallUserInfo() {
@@ -92,7 +93,9 @@ const Dashboard = () => {
                 const token: any = sessionStorage.getItem("token");
                 const decoded: any = await jwtDecode(token);
                 const response = await Axios.get(`${base_url}/get/matchUser`, { headers: { "findemail": decoded.email } });
-                return setFetchData(response.data); 
+                setFetchData(response.data);
+                console.log(response.data);
+                
             } catch (err) {
                 console.log(err);
             }
@@ -103,7 +106,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         async function FetchDynamic() {
-            setDisplayTask(fetchData)    
+            setDisplayTask(fetchData)
             setRiskFactor(fetchData);
             if (completedState) {
                 setDisplayTask(completedTask);
@@ -119,13 +122,13 @@ const Dashboard = () => {
             }
             if (overdueState) {
                 setDisplayTask(overdueTask);
-                setRiskFactor(overdueTask); 
-            }   
-        }   
+                setRiskFactor(overdueTask);
+            }
+        }
 
-        FetchDynamic(); 
+        FetchDynamic();
     }, [fetchData, completedState, pendingState, allTaskState, overdueState]);
-    
+
 
 
     const handleClick = async () => {
@@ -148,7 +151,7 @@ const Dashboard = () => {
             console.log(response.data);
             if (response.status == 200) {
                 setEditModal(false);
-                setRefreshToken(true); 
+                setRefreshToken(true);
                 setTaskName("");
                 setTaskDesc("");
                 setPriority("medium");
@@ -468,26 +471,26 @@ const Dashboard = () => {
     const AllRisk = (idx: any) => {
         setTabActiveLink(idx);
         const AllTaskRate = riskFactor.map((item: any) => {
-            if(item.priority) return item; 
+            if (item.priority) return item;
             else return null;
         }).filter((item: any) => item !== null);
-        setDisplayTask(AllTaskRate);    
+        setDisplayTask(AllTaskRate);
     }
 
     const LowRisks = (idx: any) => {
         setTabActiveLink(idx);
         const LowTaskRate = riskFactor.map((item: any) => {
-            if(item.priority === "low") return item;
+            if (item.priority === "low") return item;
             else return null;
         }).filter((item: any) => item !== null);
         setDisplayTask(LowTaskRate);
-        
+
     }
 
     const MediumRisks = (idx: any) => {
         setTabActiveLink(idx);
         const MediumTaskRate = riskFactor.map((item: any) => {
-            if(item.priority === "medium") return item;
+            if (item.priority === "medium") return item;
             else return null;
         }).filter((item: any) => item !== null);
         setDisplayTask(MediumTaskRate);
@@ -496,10 +499,14 @@ const Dashboard = () => {
     const HighRisks = (idx: any) => {
         setTabActiveLink(idx);
         const HighTaskRate = riskFactor.map((item: any) => {
-            if(item.priority === "high") return item;
+            if (item.priority === "high") return item;
             else return null;
         }).filter((item: any) => item !== null);
         setDisplayTask(HighTaskRate);
+    }
+
+    const handleDownloadClick = () => {
+        console.log("Download Click from  parent Click !");     
     }
 
     return (
@@ -511,18 +518,25 @@ const Dashboard = () => {
             <div className="wrapper relative main-content-wrapper" onClick={() => setShowDropDown(false)}>
                 <div className="status-tabs">
                     <div className="content">
-                        <div className="border-b border-gray-200 dark:border-gray-700">
-                            <ul className="flex flex-wrap justify-start -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-                                {tabs?.map((item: any, index: number) => {
-                                    return (
-                                        <li key={index} onClick={() => item.RiskItemClick(index)} className="me-2">
-                                            <span className={`inline-flex ${item.active == index ? "active" : "inactive"} items-center justify-center p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg dark:text-blue-500 dark:border-blue-500 group`}>
-                                                {item.Icon} {item.Title}
-                                            </span>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
+                        <div className="border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+                            <div className="left-sec">
+                                <ul className="flex flex-wrap justify-start -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+                                    {tabs?.map((item: any, index: number) => {
+                                        return (
+                                            <li key={index} onClick={() => item.RiskItemClick(index)} className="me-2">
+                                                <span className={`inline-flex ${item.active == index ? "active" : "inactive"} items-center justify-center p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg dark:text-blue-500 dark:border-blue-500 group`}>
+                                                    {item.Icon} {item.Title}
+                                                </span>
+                                            </li>
+                                        )
+                                    })}
+                                </ul>
+                            </div>
+                            <div className="right-sec">         
+                                <div className="download-report">       
+                                    <DownloadCSV fileName={userInfo?.name} data={fetchData} onClick={handleDownloadClick} />
+                                </div>      
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -570,7 +584,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-wrap justify-left gap-[30px]">
+                <div className="flex flex-wrap justify-left gap-[30px] card-wrappers">
                     {displayTask?.map((item: any, index: number) => {
                         return (
                             <Card key={index} editClick={() => handleEdit(item)} deleteClick={() => handleDelete(item._id)} title={item.taskName} desc={item.taskDesc} date={item.deadline} priority={item.priority} />
