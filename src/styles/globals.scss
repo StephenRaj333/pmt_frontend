@@ -610,11 +610,220 @@ aside {
     }
 
     .main-content-wrapper .stats .stats-content {
-        width: fit-content;
+        max-width: 95%;
+        width: 100%;
         flex-direction: column;
         border-radius: 8px;
         margin-bottom: 16px;
-        padding: 10px;
+        padding: 20px;
     }   
 
+    .main-content-wrapper .stats .stats-content .block-1 {
+        display: none;
+    }
+
+    .main-content-wrapper .stats .stats-content .block-2 {
+        width: 100%;
+    }
+
+    .main-content-wrapper .stats .stats-content .block-2 .content{
+        row-gap: 15px;
+    }
+
+    .main-content-wrapper .stats .stats-content .block-2 .content .left-sec {
+        justify-content: center;
+        column-gap: 20px;
+    }
+
+    .main-content-wrapper .stats .stats-content .block-2 .content .right-sec {
+        justify-content: center;
+        column-gap: 20px;
+    }
+
+    .main-content-wrapper .stats .stats-content .block-2 .content .left-sec .blocks {
+        row-gap: 8px;
+    }
+
+    .main-content-wrapper .stats .stats-content .block-2 .content .left-sec .blocks h4 {
+        font-size: 20px;
+        line-height: 26px;
+    }
+
+    .main-content-wrapper .stats .stats-content .block-2 .content .left-sec .blocks p {
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    .main-content-wrapper .stats .stats-content .block-2 .content .left-sec .blocks .one:before {
+        height: 30px;
+        width: 4px;
+        bottom: 5px;
+        left: -4px;
+    }
+
+    .main-content-wrapper .stats .stats-content .block-2 .content .right-sec .blocks p {
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    .main-content-wrapper .stats .stats-content .block-2 .content .left-sec .blocks .two:before {
+        height: 30px;
+        width: 4px;
+        bottom: 5px;
+        left: -4px;
+    }
+
+    .main-content-wrapper .stats .stats-content .block-2 .content .right-sec .blocks h4 {
+        font-size: 20px;
+        line-height: 26px;   
+    }
+
+    .main-content-wrapper .stats .stats-content .block-2 .content .right-sec .blocks .two:before,.main-content-wrapper .stats .stats-content .block-2 .content .right-sec .blocks .one:before {
+        height: 30px;
+        width: 4px;
+        bottom: 5px;
+        left: -4px;
+    }
+
+    .bar-chart {
+        padding-top: 30px;
+    }
+
+    .bar-chart canvas{
+        width: 100% !important;
+    }
+
+    .card-wrapper .inner {
+        min-width: 100%;
+        width: 100%;
+        height: 100%;
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .card-wrapper .inner h3 {
+        font-size: 20px;
+        line-height: 26px;
+        margin-bottom: 12px;
+        font-weight: 500;
+    }
+
+    .card-wrapper .inner p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .card-wrapper .inner .content {
+        position: relative;
+    }
+
+    .card-wrapper .inner .content .left-sec p {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 300;
+    }
+
+    .card-wrapper .inner .content .middle-sec p {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 300;
+    }
+
+    .card-wrapper .inner .content .right-sec .img-wrapper svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .main-content-wrapper{
+        margin-top: 55px;
+        margin-left: 15vw;
+        margin-bottom: 100px;
+    }
+
+    .card-wrappers {    
+        justify-content: center;
+        min-width: 300px;
+        margin: 50px auto 150px auto;
+    }
+
+    .card-wrapper .inner ,.main-content-wrapper .add-button{ 
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 200px;
+        min-width: 275px;
+    }
+
+    .card-wrapper .inner, .main-content-wrapper .add-button{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-content-wrapper .add-button {
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+        width: 100px;
+        min-width: 100px;
+        min-height: 100px;
+        max-height: 100px;
+        background: #1f3a8a;
+        color: #FFF;
+        border-radius: 100%;
+    }
+
+    .nav-header .dropdown_content {
+        top: 35px;
+        right: 10px;
+    }
+
+    .card-wrapper .inner, .main-content-wrapper .add-button {
+        align-items: flex-start;
+    }
+ 
+    aside {
+        top: 40px;
+    }
+
+    aside ul {
+        padding-top: 10px;
+    }
+    .card-wrappers{
+        justify-content: left;
+    }
+    .wrapper .modal-wrapper .inner .sub-inner{
+        max-height: 400px;
+    }
+    .logins-screen{
+        height: 100vh;
+    }
+
+}
+
+@media screen and (max-width: 540px) {
+    .main-content-wrapper .status-tabs .content .border-b {
+        flex-direction: column;
+    }    
+    .main-content-wrapper {
+        margin-left: 12vw;
+    }
+    .main-content-wrapper .status-tabs .content .left-sec ul {
+        flex-wrap: nowrap;
+        margin-bottom: 20px;
+    }
+    .main-content-wrapper .status-tabs .content .right-sec {
+        width: 100%;
+        text-align: left;
+    }
+    .main-content-wrapper .status-tabs .content .right-sec{
+        margin-bottom: 10px;
+    }
+    .nav-header .logo-content a span{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .logins-screen{
+        height: 100vh;
+    }
 }

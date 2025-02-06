@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import Axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -19,15 +21,56 @@ const Login = () => {
             const response = await Axios.post(`${base_url}/post/login`,formData,{headers:{"Content-Type": "application/json"}});
             if(response.status == 200 && response.data.token) { 
                 sessionStorage.setItem("token",response.data.token);
-                Router.push('/dashboard');  
+                toast.success("Login Successfull", {
+                    position: "top-right",
+                    autoClose: 3000, 
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                }) 
+                setTimeout(() => Router.push('/dashboard'),3000);
             } 
-        } catch(err) {
+        } catch(err:any) {
             console.log(err);
+            if(err.response.data.name == "ValidationError") {    
+                toast.error(err.response.data.message, {
+                    position: "top-right",
+                    autoClose: 3000, 
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                });     
+            } else if(err.response.data == "Credentials Dont Match") {
+                toast.error(err.response.data, {
+                    position: "top-right",
+                    autoClose: 3000, 
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                }); 
+            }
+             else {
+                toast.error(err.response.data.errorResponse, {
+                    position: "top-right",
+                    autoClose: 3000, 
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                });
+            }
         }
     }
 
     return (
-        <section className="bg-gray-50 dark:bg-gray-900">
+        <section className="bg-gray-50 dark:bg-gray-900 logins-screen">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <Link href="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
                     <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo" />
@@ -53,6 +96,18 @@ const Login = () => {
                     </div>  
                 </div>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />      
         </section>
     )
 }

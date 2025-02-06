@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useState } from 'react';
 import Axios from 'axios';
 
@@ -25,13 +27,34 @@ const Signup = () => {
             } else {
                 throw new Error
             }
-        } catch (err) {
+        } catch (err:any) {
             console.log(err);
+            if(err.response.data.name == "ValidationError") {    
+                toast.error(err.response.data.message, {
+                    position: "top-right",
+                    autoClose: 3000, 
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                }); 
+            } else {
+                toast.error(err.response.data.errorResponse.errmsg, {
+                    position: "top-right",
+                    autoClose: 3000, 
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "colored",
+                });
+            }
         }
     }
 
     return (
-        <section className="bg-gray-50 dark:bg-gray-900">
+        <section className="bg-gray-50 dark:bg-gray-900 logins-screen">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <Link href="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
                     <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo" />
@@ -61,6 +84,18 @@ const Signup = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />  
         </section>
     )
 }
