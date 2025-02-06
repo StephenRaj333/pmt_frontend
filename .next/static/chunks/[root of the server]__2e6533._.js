@@ -854,7 +854,7 @@ __turbopack_esm__({
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/react/jsx-dev-runtime.js [client] (ecmascript)");
 ;
-const Header = ({ handleLogOut, name, email, showDropDown, handleDropDown })=>{
+const Header = ({ handleLogOut, name, email, showDropDown, handleDropDown, pendingTasks })=>{
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
         className: "nav-header",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -906,7 +906,7 @@ const Header = ({ handleLogOut, name, email, showDropDown, handleDropDown })=>{
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                className: "flex ms-2 md:me-24",
+                                className: "flex ms-2 md:me-24 items-center",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                         src: "https://gild.cards/19f279ff2cb252e6c3d7.png",
@@ -922,11 +922,32 @@ const Header = ({ handleLogOut, name, email, showDropDown, handleDropDown })=>{
                                         children: [
                                             "Hi ",
                                             name,
-                                            " !"
+                                            " ! "
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/component/Header/index.tsx",
                                         lineNumber: 17,
+                                        columnNumber: 29
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "upcomingTask",
+                                        children: [
+                                            " You have ",
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                style: {
+                                                    color: "#8bce8a"
+                                                },
+                                                children: pendingTasks
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/component/Header/index.tsx",
+                                                lineNumber: 18,
+                                                columnNumber: 67
+                                            }, this),
+                                            "  up coming Task !"
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/component/Header/index.tsx",
+                                        lineNumber: 18,
                                         columnNumber: 29
                                     }, this)
                                 ]
@@ -959,7 +980,7 @@ const Header = ({ handleLogOut, name, email, showDropDown, handleDropDown })=>{
                                                 children: "Open user menu"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/component/Header/index.tsx",
-                                                lineNumber: 24,
+                                                lineNumber: 25,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -967,18 +988,18 @@ const Header = ({ handleLogOut, name, email, showDropDown, handleDropDown })=>{
                                                 children: name?.split("").join().at(0)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/component/Header/index.tsx",
-                                                lineNumber: 25,
+                                                lineNumber: 26,
                                                 columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/component/Header/index.tsx",
-                                        lineNumber: 23,
+                                        lineNumber: 24,
                                         columnNumber: 33
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/component/Header/index.tsx",
-                                    lineNumber: 22,
+                                    lineNumber: 23,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -994,7 +1015,7 @@ const Header = ({ handleLogOut, name, email, showDropDown, handleDropDown })=>{
                                                     children: name
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/component/Header/index.tsx",
-                                                    lineNumber: 30,
+                                                    lineNumber: 31,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1003,13 +1024,13 @@ const Header = ({ handleLogOut, name, email, showDropDown, handleDropDown })=>{
                                                     children: email
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/component/Header/index.tsx",
-                                                    lineNumber: 33,
+                                                    lineNumber: 34,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/component/Header/index.tsx",
-                                            lineNumber: 29,
+                                            lineNumber: 30,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -1023,34 +1044,34 @@ const Header = ({ handleLogOut, name, email, showDropDown, handleDropDown })=>{
                                                     children: "Sign out"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/component/Header/index.tsx",
-                                                    lineNumber: 39,
+                                                    lineNumber: 40,
                                                     columnNumber: 41
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/component/Header/index.tsx",
-                                                lineNumber: 38,
+                                                lineNumber: 39,
                                                 columnNumber: 37
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/component/Header/index.tsx",
-                                            lineNumber: 37,
+                                            lineNumber: 38,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/component/Header/index.tsx",
-                                    lineNumber: 28,
+                                    lineNumber: 29,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/component/Header/index.tsx",
-                            lineNumber: 21,
+                            lineNumber: 22,
                             columnNumber: 25
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/component/Header/index.tsx",
-                        lineNumber: 20,
+                        lineNumber: 21,
                         columnNumber: 21
                     }, this)
                 ]
@@ -2185,6 +2206,7 @@ const Dashboard = ()=>{
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$component$2f$Header$2f$index$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
+                pendingTasks: fetchData?.filter((item)=>item?.status == "progress")?.length,
                 handleLogOut: handleLogOut,
                 name: userInfo?.name,
                 email: userInfo?.email,

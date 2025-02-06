@@ -2573,6 +2573,10 @@ aside ul li a:hover .l-block {
   .logins-screen {
     height: 100vh;
   }
+
+  .upcomingTask {
+    font-size: 14px;
+  }
 }
 
 @media screen and (width <= 540px) {
@@ -2602,6 +2606,14 @@ aside ul li a:hover .l-block {
 
   .logins-screen {
     height: 100vh;
+  }
+
+  .upcomingTask {
+    font-size: 13px;
+  }
+
+  .nav-header .inner {
+    max-width: 95%;
   }
 }
 

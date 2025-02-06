@@ -19,8 +19,8 @@ const Login = () => {
         }
         try {
             const response = await Axios.post(`${base_url}/post/login`,formData,{headers:{"Content-Type": "application/json"}});
-            if(response.status == 200 && response.data.token) { 
-                sessionStorage.setItem("token",response.data.token);
+            if(response?.status == 200 && response?.data?.token) { 
+                sessionStorage.setItem("token",response?.data?.token);
                 toast.success("Login Successfull", {
                     position: "top-right",
                     autoClose: 3000, 
@@ -34,8 +34,8 @@ const Login = () => {
             } 
         } catch(err:any) {
             console.log(err);
-            if(err.response.data.name == "ValidationError") {    
-                toast.error(err.response.data.message, {
+            if(err?.response?.data?.name == "ValidationError") {    
+                toast.error(err?.response?.data?.message, {
                     position: "top-right",
                     autoClose: 3000, 
                     hideProgressBar: false,
@@ -44,8 +44,8 @@ const Login = () => {
                     draggable: true,
                     theme: "colored",
                 });     
-            } else if(err.response.data == "Credentials Dont Match") {
-                toast.error(err.response.data, {
+            } else if(err?.response?.data == "Credentials Dont Match") {
+                toast.error(err?.response?.data, {
                     position: "top-right",
                     autoClose: 3000, 
                     hideProgressBar: false,
@@ -56,7 +56,7 @@ const Login = () => {
                 }); 
             }
              else {
-                toast.error(err.response.data.errorResponse, {
+                toast.error(err?.response?.data?.errorResponse, {
                     position: "top-right",
                     autoClose: 3000, 
                     hideProgressBar: false,

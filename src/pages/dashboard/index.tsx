@@ -511,7 +511,7 @@ const Dashboard = () => {
 
     return (
         <>
-            <Header handleLogOut={handleLogOut} name={userInfo?.name} email={userInfo?.email} showDropDown={showDropDown} handleDropDown={() => setShowDropDown(!showDropDown)} />
+            <Header pendingTasks={fetchData?.filter((item: any) => item?.status == "progress")?.length} handleLogOut={handleLogOut} name={userInfo?.name} email={userInfo?.email} showDropDown={showDropDown} handleDropDown={() => setShowDropDown(!showDropDown)} />
 
             <Aside menuItems={menuItems} activeState={activeLink} />
 

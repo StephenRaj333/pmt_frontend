@@ -798,6 +798,9 @@ aside {
     .logins-screen{
         height: 100vh;
     }
+    .upcomingTask {
+        font-size: 14px;
+    }
 
 }
 
@@ -825,5 +828,11 @@ aside {
     }
     .logins-screen{
         height: 100vh;
+    }
+    .upcomingTask {
+        font-size: 13px;
+    }
+    .nav-header .inner{
+        max-width: 95%;
     }
 }

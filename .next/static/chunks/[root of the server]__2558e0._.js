@@ -589,8 +589,8 @@ const Login = ()=>{
                     "Content-Type": "application/json"
                 }
             });
-            if (response.status == 200 && response.data.token) {
-                sessionStorage.setItem("token", response.data.token);
+            if (response?.status == 200 && response?.data?.token) {
+                sessionStorage.setItem("token", response?.data?.token);
                 __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].success("Login Successfull", {
                     position: "top-right",
                     autoClose: 3000,
@@ -604,8 +604,8 @@ const Login = ()=>{
             }
         } catch (err) {
             console.log(err);
-            if (err.response.data.name == "ValidationError") {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].error(err.response.data.message, {
+            if (err?.response?.data?.name == "ValidationError") {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].error(err?.response?.data?.message, {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -614,8 +614,8 @@ const Login = ()=>{
                     draggable: true,
                     theme: "colored"
                 });
-            } else if (err.response.data == "Credentials Dont Match") {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].error(err.response.data, {
+            } else if (err?.response?.data == "Credentials Dont Match") {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].error(err?.response?.data, {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -625,7 +625,7 @@ const Login = ()=>{
                     theme: "colored"
                 });
             } else {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].error(err.response.data.errorResponse, {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].error(err?.response?.data?.errorResponse, {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: false,

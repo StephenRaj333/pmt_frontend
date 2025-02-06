@@ -1,6 +1,6 @@
 
 
-const Header = ({handleLogOut,name,email,showDropDown,handleDropDown}:any) => {
+const Header = ({handleLogOut,name,email,showDropDown,handleDropDown,pendingTasks}:any) => {
     return (
         <nav className="nav-header">
             <div className="px-3 py-3 lg:px-5 lg:pl-3 inner">
@@ -12,9 +12,10 @@ const Header = ({handleLogOut,name,email,showDropDown,handleDropDown}:any) => {
                                 <path clipRule="evenodd" fillRule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
                             </svg>
                         </button>
-                        <a className="flex ms-2 md:me-24">
+                        <a className="flex ms-2 md:me-24 items-center">
                             <img src="https://gild.cards/19f279ff2cb252e6c3d7.png" className="h-8 me-3" alt="FlowBite Logo" />   
-                            <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Hi {name} !</span>
+                            <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Hi {name} ! </span>
+                            <p className="upcomingTask"> You have <span style={{color: "#8bce8a"}}>{pendingTasks}</span>  up coming Task !</p>  
                         </a>     
                     </div>      
                     <div className="flex items-center"> 
