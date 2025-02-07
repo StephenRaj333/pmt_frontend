@@ -550,7 +550,7 @@ const Dashboard = () => {
                             </div>
                             <div className="info">
                                 <h3>Hello,</h3>
-                                <h5>{userInfo?.name?.split("").join().at(0)} </h5>  
+                                <h5>{userInfo?.name} </h5>  
                             </div>
                         </div>
                         <div className="block-2">
