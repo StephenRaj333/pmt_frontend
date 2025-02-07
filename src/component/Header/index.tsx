@@ -13,7 +13,7 @@ const Header = ({handleLogOut,name,email,showDropDown,handleDropDown,pendingTask
                             </svg>
                         </button>
                         <a className="flex ms-2 md:me-24 items-center">
-                            <img src="https://gild.cards/19f279ff2cb252e6c3d7.png" className="h-8 me-3" alt="FlowBite Logo" />   
+                            <img src="https://gild.cards/496dafa270e6fb63ef58.svg" className="h-8 me-3" alt="FlowBite Logo" />   
                             <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Hi {name} ! </span>
                             <p className="upcomingTask"> You have <span style={{color: "#8bce8a"}}>{pendingTasks}</span>  up coming Task !</p>  
                         </a>     

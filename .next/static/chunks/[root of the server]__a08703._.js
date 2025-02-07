@@ -598,8 +598,8 @@ const Signup = ()=>{
             }
         } catch (err) {
             console.log(err);
-            if (err.response.data.name == "ValidationError") {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].error(err.response.data.message, {
+            if (err?.response?.data?.name == "ValidationError") {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].error(err?.response?.data?.message, {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -609,7 +609,7 @@ const Signup = ()=>{
                     theme: "colored"
                 });
             } else {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].error(err.response.data.errorResponse.errmsg, {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$toastify$2f$dist$2f$index$2e$mjs__$5b$client$5d$__$28$ecmascript$29$__["toast"].error(err?.response?.data?.errorResponse?.errmsg, {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -625,15 +625,15 @@ const Signup = ()=>{
         className: "bg-gray-50 dark:bg-gray-900 logins-screen",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0",
+                className: "flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 logins-screen-inner",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                         href: "/",
-                        className: "flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white",
+                        className: "gold-color flex items-center mb-2 text-2xl font-semibold text-gray-900 dark:text-white",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                className: "w-8 h-8 mr-2",
-                                src: "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg",
+                                className: "w-20 h-20",
+                                src: "https://gild.cards/66026145a2bc6a47467a.svg",
                                 alt: "logo"
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/signup/index.tsx",
@@ -648,9 +648,9 @@ const Signup = ()=>{
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700",
+                        className: "login-container w-full bg-white rounded-lg md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "p-6 space-y-4 md:space-y-6 sm:p-8",
+                            className: "p-6 space-y-4 md:space-y-6 sm:p-8 inner-container",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                                     className: "text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white",
@@ -661,6 +661,7 @@ const Signup = ()=>{
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "form-group",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                             htmlFor: "name",
@@ -677,8 +678,8 @@ const Signup = ()=>{
                                             onChange: (e)=>setName(e.target.value),
                                             name: "name",
                                             id: "name",
-                                            className: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
-                                            placeholder: "stephen "
+                                            className: "border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+                                            placeholder: "Enter Your Name"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/signup/index.tsx",
                                             lineNumber: 70,
@@ -691,6 +692,7 @@ const Signup = ()=>{
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "form-group",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                             htmlFor: "email",
@@ -707,7 +709,7 @@ const Signup = ()=>{
                                             onChange: (e)=>setEmail(e.target.value),
                                             name: "email",
                                             id: "email",
-                                            className: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+                                            className: "border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
                                             placeholder: "name@company.com"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/signup/index.tsx",
@@ -721,6 +723,7 @@ const Signup = ()=>{
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "form-group",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                             htmlFor: "password",
@@ -738,7 +741,7 @@ const Signup = ()=>{
                                             name: "password",
                                             id: "password",
                                             placeholder: "••••••••",
-                                            className: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            className: "text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/signup/index.tsx",
                                             lineNumber: 78,

@@ -476,7 +476,7 @@ const Header = ({ handleLogOut, name, email, showDropDown, handleDropDown, pendi
                                 className: "flex ms-2 md:me-24 items-center",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("img", {
-                                        src: "https://gild.cards/19f279ff2cb252e6c3d7.png",
+                                        src: "https://gild.cards/496dafa270e6fb63ef58.svg",
                                         className: "h-8 me-3",
                                         alt: "FlowBite Logo"
                                     }, void 0, false, {

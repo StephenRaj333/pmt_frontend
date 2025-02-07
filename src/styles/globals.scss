@@ -11,8 +11,14 @@
     position: relative;
 
     .add-button:hover {
-        border-color: #1f3a8a;
-    }
+        border-color: #f7e092;
+        background: linear-gradient(129.89deg, #f7e092 19.82%, #a39134 103.27%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: #0000;
+        background-clip: text;
+        text-fill-color: #0000;
+        transition: 0.3s ease-in-out;
+    }   
 
     .modal-wrapper {
         width: 100%;
@@ -160,8 +166,8 @@ aside {
     width: 100%;
     top: 5.2709vw /* 72px -> 5.2709vw */;
     left: 0;
-    padding-top: 15px;
-
+    padding-top: 1.0981vw;
+    
     ul {
         li {
             a {
@@ -530,8 +536,73 @@ aside {
     }
 }
 
+.logins-screen {
+    background: #000 !important;
+    .gold-color {
+        background: linear-gradient(129.89deg, #F7E092 19.82%, #A39134 103.27%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;   
+       }    
+    .login-container {
+       background: linear-gradient(330.74deg,#131313 3.27%,#464646 98.72%);
+
+       input {      
+        background: #b7b7b7;
+        color: #000 !important;     
+        border: 1px solid #000;     
+        font-size: 16px !important;
+        line-height: 24px !important;
+        font-weight: 600 !important;
+       }        
+       button {
+        color: #000;
+        font-weight: 600;
+        text-shadow: 0px 1px 0px #F6E092;
+        background-image: -webkit-linear-gradient(top, #F6E092, #A39134);
+        background-image: -moz-linear-gradient(left, #F6E092, #A39134);
+        background-image: -o-linear-gradient(bottom, #F6E092, #A39134);
+        background-image: linear-gradient(to right, #F6E092, #A39134);
+        -webkit-animation: yellow 2s infinite;
+        -moz-animation: yellow 2s infinite;
+        -o-animation: yellow 2s infinite;
+        animation: yellow 2s infinite;  
+       }
+       :focus { 
+        outline: none !important;
+       }
+       ::placeholder {
+        color: #00000042 !important;  
+        font-weight: 400 !important;
+       }
+       p {
+        color: #FFF;
+        a {
+            background: linear-gradient(129.89deg, #F7E092 19.82%, #A39134 103.27%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;   
+        }
+       }
+    }      
+}   
 
 // responsive 
+
+.logo-content {
+    a {
+        span {
+            background: linear-gradient(129.89deg, #F7E092 19.82%, #A39134 103.27%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }       
+    }           
+}
+
 
 @media only screen and (max-width: 768px) { 
     .nav-header {   
@@ -572,8 +643,8 @@ aside {
         }
     }
     .main-content-wrapper {
-        margin-top: 50px;
-        margin-left: 76px;
+        margin-top: 3.6603vw;
+        margin-left: 5.677vw;
     }
     .main-content-wrapper .status-tabs {
         padding: 10px;
@@ -735,9 +806,9 @@ aside {
     }
 
     .main-content-wrapper{
-        margin-top: 55px;
+        margin-top: 15vw;
         margin-left: 15vw;
-        margin-bottom: 100px;
+        margin-bottom: 7.3026vw;
     }
 
     .card-wrappers {    
@@ -762,14 +833,17 @@ aside {
 
     .main-content-wrapper .add-button {
         position: fixed;
-        bottom: 50px;
-        right: 50px;
+        bottom: 100px;
+        right: 20px;
         width: 100px;
-        min-width: 100px;
-        min-height: 100px;
-        max-height: 100px;
-        background: #1f3a8a;
-        color: #FFF;
+        min-width: 75px;
+        min-height: 75px;
+        max-height: 75px;
+        max-width: 75px;
+        background: #FFF;
+        color: #000;
+        font-size: 14px;
+        line-height: normal;
         border-radius: 100%;
     }
 

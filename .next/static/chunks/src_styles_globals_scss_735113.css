@@ -370,10 +370,6 @@ img, video {
   margin-bottom: 1.25rem;
 }
 
-.mb-6 {
-  margin-bottom: 1.5rem;
-}
-
 .me-1 {
   margin-inline-end: .25rem;
 }
@@ -388,10 +384,6 @@ img, video {
 
 .ml-5 {
   margin-left: 1.25rem;
-}
-
-.mr-2 {
-  margin-right: .5rem;
 }
 
 .ms-2 {
@@ -422,6 +414,10 @@ img, video {
   display: none;
 }
 
+.h-20 {
+  height: 5rem;
+}
+
 .h-3 {
   height: .75rem;
 }
@@ -440,6 +436,10 @@ img, video {
 
 .max-h-full {
   max-height: 100%;
+}
+
+.w-20 {
+  width: 5rem;
 }
 
 .w-3 {
@@ -783,7 +783,13 @@ img, video {
 }
 
 .wrapper .add-button:hover {
-  border-color: #1f3a8a;
+  border-color: #f7e092;
+  background: linear-gradient(129.89deg, #f7e092 19.82%, #a39134 103.27%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #0000;
+  background-clip: text;
+  text-fill-color: #0000;
+  transition: all .3s ease-in-out;
 }
 
 .wrapper .modal-wrapper {
@@ -917,7 +923,7 @@ aside {
   width: 100%;
   top: 5.2709vw;
   left: 0;
-  padding-top: 15px;
+  padding-top: 1.0981vw;
 }
 
 aside ul li a {
@@ -1278,6 +1284,73 @@ aside ul li a:hover .l-block {
   text-align: right;
 }
 
+.logins-screen {
+  background: #000 !important;
+}
+
+.logins-screen .gold-color {
+  background: linear-gradient(129.89deg, #f7e092 19.82%, #a39134 103.27%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #0000;
+  background-clip: text;
+  text-fill-color: #0000;
+}
+
+.logins-screen .login-container {
+  background: linear-gradient(330.74deg, #131313 3.27%, #464646 98.72%);
+}
+
+.logins-screen .login-container input {
+  background: #b7b7b7;
+  border: 1px solid #000;
+  color: #000 !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  font-weight: 600 !important;
+}
+
+.logins-screen .login-container button {
+  color: #000;
+  font-weight: 600;
+  text-shadow: 0 1px #f6e092;
+  background-image: linear-gradient(to right, #f6e092, #a39134);
+  animation: #ff0 2s infinite;
+}
+
+.logins-screen .login-container :focus {
+  outline: none !important;
+}
+
+.logins-screen .login-container ::-moz-placeholder {
+  color: #00000042 !important;
+  font-weight: 400 !important;
+}
+
+.logins-screen .login-container ::placeholder {
+  color: #00000042 !important;
+  font-weight: 400 !important;
+}
+
+.logins-screen .login-container p {
+  color: #fff;
+}
+
+.logins-screen .login-container p a {
+  background: linear-gradient(129.89deg, #f7e092 19.82%, #a39134 103.27%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #0000;
+  background-clip: text;
+  text-fill-color: #0000;
+}
+
+.logo-content a span {
+  background: linear-gradient(129.89deg, #f7e092 19.82%, #a39134 103.27%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #0000;
+  background-clip: text;
+  text-fill-color: #0000;
+}
+
 @media only screen and (width <= 768px) {
   .nav-header {
     padding: 10px 0;
@@ -1315,8 +1388,8 @@ aside ul li a:hover .l-block {
   }
 
   .main-content-wrapper {
-    margin-top: 50px;
-    margin-left: 76px;
+    margin-top: 3.6603vw;
+    margin-left: 5.677vw;
   }
 
   .main-content-wrapper .status-tabs {
@@ -1481,9 +1554,9 @@ aside ul li a:hover .l-block {
   }
 
   .main-content-wrapper {
-    margin-top: 55px;
+    margin-top: 15vw;
     margin-left: 15vw;
-    margin-bottom: 100px;
+    margin-bottom: 7.3026vw;
   }
 
   .card-wrappers {
@@ -1505,14 +1578,17 @@ aside ul li a:hover .l-block {
 
   .main-content-wrapper .add-button {
     position: fixed;
-    bottom: 50px;
-    right: 50px;
+    bottom: 100px;
+    right: 20px;
     width: 100px;
-    min-width: 100px;
-    min-height: 100px;
-    max-height: 100px;
-    background: #1f3a8a;
-    color: #fff;
+    min-width: 75px;
+    min-height: 75px;
+    max-height: 75px;
+    max-width: 75px;
+    background: #fff;
+    color: #000;
+    font-size: 14px;
+    line-height: normal;
     border-radius: 100%;
   }
 
